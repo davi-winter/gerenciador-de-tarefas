@@ -1,0 +1,54 @@
+﻿@model JobManagement.Models.Job
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+
+<div>
+    <dl class="d-flex flex-wrap">
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Description)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Description)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.User)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.User.Name)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Status)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Status)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Progress)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Progress)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Deadline)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Deadline)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Priority)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Priority)
+        </dd>
+    </dl>
+
+    <form asp-action="Details">
+        <a asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-primary">Editar</a>
+        <a href="javascript:history.back()">Voltar para Lista</a>
+    </form>
+</div>

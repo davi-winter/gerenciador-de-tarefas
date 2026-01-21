@@ -1,0 +1,39 @@
+﻿@model JobManagement.Models.User
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+
+<h4>Tem certeza de que deseja excluir este usuário?</h4>
+
+<div>
+    <hr></hr>
+    <dl class="d-flex flex-wrap">
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Name)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Name)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Email)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Email)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.BirthDate)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.BirthDate)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"></input>
+        <input type="submit" value="Delete" class="btn btn-danger"></input>
+        <a asp-action="Index">Voltar para Lista</a>
+    </form>
+</div>

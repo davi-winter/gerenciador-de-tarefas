@@ -1,0 +1,69 @@
+﻿@model IEnumerable<JobManagement.Models.User>
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/user.css" asp-append-version="true" />
+</head>
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar Novo</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="table-success">
+            <th class="table-titles">
+                <a asp-action="Index" asp-route-fieldOrder="name" class="link-table-titles">@Html.DisplayNameFor(model => model.Name)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Index" asp-route-fieldOrder="cpf" class="link-table-titles">@Html.DisplayNameFor(model => model.Cpf)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Index" asp-route-fieldOrder="email" class="link-table-titles">@Html.DisplayNameFor(model => model.Email)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Index" asp-route-fieldOrder="telephone" class="link-table-titles">@Html.DisplayNameFor(model => model.Telephone)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Index" asp-route-fieldOrder="birthDate" class="link-table-titles">@Html.DisplayNameFor(model => model.BirthDate)</a>
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormattedCpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormattedPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-Id="@item.Id">Editar</a>
+                    <a asp-action="Details" asp-route-Id="@item.Id">Detalhes</a>
+                    <a asp-action="Delete" asp-route-Id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

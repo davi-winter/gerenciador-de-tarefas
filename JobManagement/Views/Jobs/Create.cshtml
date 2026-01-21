@@ -1,0 +1,60 @@
+﻿@using JobManagement.Models.Enums;
+@model JobManagement.Models.ViewModels.JobFormViewModel
+
+@{
+    ViewData["Title"] = "Tarefas";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+<h4>Criar Nova</h4>
+<hr></hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Job.Description" class="control-label"></label>
+                <input asp-for="Job.Description" class="form-control"></input>
+                <span asp-validation-for="Job.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Status" class="control-label"></label>
+                <select asp-for="Job.Status" asp-items="Html.GetEnumSelectList<EJobStatus>()" id="status" onblur="refreshFieldProgress()" class="form-control"></select>
+                <span asp-validation-for="Job.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Progress" class="control-label"></label>
+                <input asp-for="Job.Progress" value="0" id="progress" onblur="refreshFieldStatus()" class="form-control"></input>
+                <span asp-validation-for="Job.Progress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Deadline" class="control-label"></label>
+                <input asp-for="Job.Deadline" class="form-control"></input>
+                <span asp-validation-for="Job.Deadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Priority" class="control-label"></label>
+                <select asp-for="Job.Priority" asp-items="Html.GetEnumSelectList<EJobPriority>()" class="form-control"></select>
+                <span asp-validation-for="Job.Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.UserId" class="control-label"></label>
+                <select asp-for="Job.UserId" asp-items="@(new SelectList(Model.Users,"Id","Name"))" class="form-control"></select>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary"></input>
+                <a href="javascript:history.back()">Voltar para Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/js/job.js"></script>
+    }
+}

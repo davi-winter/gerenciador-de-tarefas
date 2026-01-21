@@ -1,0 +1,47 @@
+﻿@model JobManagement.Models.User
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+
+<div>
+    <dl class="d-flex flex-wrap">
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Name)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Name)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Cpf)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.FormattedCpf)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Email)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.Email)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.Telephone)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.FormattedPhone)
+        </dd>
+        <dt class="w-25">
+            @Html.DisplayNameFor(Model => Model.BirthDate)
+        </dt>
+        <dd class="w-75">
+            @Html.DisplayFor(Model => Model.BirthDate)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <a asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-primary">Editar</a>
+        <a asp-action="Index">Voltar para Lista</a>
+    </form>
+</div>

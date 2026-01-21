@@ -1,0 +1,64 @@
+﻿.title-header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.filter-header {
+    display: flex; 
+    gap: 15px;
+}
+
+.date-filter-height {
+    height: 40px;
+}
+
+.table-no-flicker {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.table-titles {
+    position: sticky;
+    top: 0
+}
+
+.table-title-status {
+    width: 12%;
+}
+
+.link-table-titles {
+    text-decoration: none;
+    color: GrayText;
+    font-weight: bold;
+}
+
+.links-editing {
+    display: none;
+}
+
+.progress-container {
+    background-color: #f3f3f3; /* Cor de fundo da barra vazia */
+    border-radius: 5px;
+    overflow: hidden; /* Garante que o texto fique dentro dos limites */
+    position: relative; /* Essencial para posicionar o texto */
+    height: 20px; /* Altura da barra */
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* O valor inicial (0%) */
+    background-color: #d1e7dd; /* Cor da barra preenchida */
+    text-align: right; /* Alinha o texto para a direita (opcional, pois o texto será posicionado no centro) */
+    transition: width 0.4s ease; /* Adiciona uma transição suave ao mudar o valor */
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o texto perfeitamente */
+    color: InfoText; /* Cor do texto, mude para branco se a barra tiver cor escura */
+    line-height: 28px; /* Alinha verticalmente se a altura for fixa */
+    font-size: 14px;
+}

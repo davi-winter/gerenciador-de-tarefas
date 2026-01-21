@@ -1,0 +1,55 @@
+﻿@model JobManagement.Models.User
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr></hr>
+<h4>Criar Novo</h4>
+<hr></hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"></input>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" id="cpf" placeholder="000.000.000-00" oninput="formatCpf(event)" class="form-control"></input>
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"></input>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" id="telephone" placeholder="(XX) 9XXXX-XXXX" oninput="formatPhone(event)" class="form-control"></input>
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control"></input>
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary"></input>
+                <a asp-action="Index">Voltar para Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/js/user.js"></script>
+    }
+}

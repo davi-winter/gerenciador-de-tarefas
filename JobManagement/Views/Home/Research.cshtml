@@ -1,0 +1,130 @@
+﻿@using JobManagement.Models.Enums;
+@model IEnumerable<JobManagement.Models.Job>
+
+@{
+    ViewData["Title"] = "Pesquisar";
+
+    var listUsers = ViewData["listUsers"] as SelectList;
+    var listStatus = ViewData["listStatus"] as SelectList;
+    var listPriority = ViewData["listPriority"] as SelectList;
+    var minDate = ViewData["minDate"];
+    var maxDate = ViewData["maxDate"];
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/research.css" asp-append-version="true" />
+</head>
+
+<div class="title-header">
+    <h2>@ViewData["Title"]</h2>
+    <div>
+        <input type="checkbox" id="enableEditing" onclick="savedState()">
+        <label for="enableEditing">Habilitar Edição</label>
+    </div>
+</div>
+
+<hr></hr>
+
+<form asp-action="Research" method="get">
+    <div class="input-group filter-header">
+        <div class="col-md-2">
+            <label for="selectedUser" class="control-label">Usuário</label>
+            <select name="selectedUser" asp-items="listUsers" class="form-control">
+                <option value="">--Todos--</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="selectedStatus" class="control-label">Status</label>
+            <select name="selectedStatus" asp-items="listStatus" class="form-control">
+                <option value="">--Todos--</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="selectedPriority" class="control-label">Prioridade</label>
+            <select name="selectedPriority" asp-items="listPriority" class="form-control">
+                <option value="">--Todas--</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="minDate" class="control-label">Data Inicial</label>
+            <input type="date" name="minDate" value=@minDate class="form-control date-filter-height" />
+        </div>
+
+        <div class="col-md-2">
+            <label for="maxDate" class="control-label">Data Final</label>
+            <input type="date" name="maxDate" value=@maxDate class="form-control date-filter-height" />
+        </div>
+
+        <span class="input-group-text">
+            <input asp-route-filtered="true" type="submit" value="Filtrar" class="btn btn-primary"></input>
+        </span>
+    </div>
+</form>
+
+<table id="tableJobs" class="table table-striped table-hover table-no-flicker">
+    <thead>
+        <tr class="table-success">
+            <th class="table-titles">
+                <a asp-action="Research" asp-route-fieldOrder="Description" class="link-table-titles">@Html.DisplayNameFor(model => model.Description)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Research" asp-route-fieldOrder="User" class="link-table-titles">@Html.DisplayNameFor(model => model.User)</a>
+            </th>
+            <th class="table-titles table-title-status">
+                <a asp-action="Research" asp-route-fieldOrder="Status" class="link-table-titles">@Html.DisplayNameFor(model => model.Status)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Research" asp-route-fieldOrder="Progress" class="link-table-titles">@Html.DisplayNameFor(model => model.Progress)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Research" asp-route-fieldOrder="Deadline" class="link-table-titles">@Html.DisplayNameFor(model => model.Deadline)</a>
+            </th>
+            <th class="table-titles">
+                <a asp-action="Research" asp-route-fieldOrder="Priority" class="link-table-titles">@Html.DisplayNameFor(model => model.Priority)</a>
+            </th>
+            <th class="table-titles">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(modelItem => item.Progress)%;"></div>
+                        <span class="progress-text">@Html.DisplayFor(modelItem => item.Progress)%</span>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td id="linksEditing">
+                    <a asp-controller="Jobs" asp-action="Edit" asp-route-Id="@item.Id" class="links-editing">Editar</a>
+                    <a asp-controller="Jobs" asp-action="Details" asp-route-Id="@item.Id" class="links-editing">Detalhes</a>
+                    <a asp-controller="Jobs" asp-action="Delete" asp-route-Id="@item.Id" class="links-editing">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/research.js"></script>
+}

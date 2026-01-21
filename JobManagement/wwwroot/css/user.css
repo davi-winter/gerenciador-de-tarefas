@@ -1,0 +1,10 @@
+﻿.table-titles {
+    position: sticky;
+    top: 0
+}
+
+.link-table-titles {
+    text-decoration: none;
+    color: GrayText;
+    font-weight: bold;
+}
